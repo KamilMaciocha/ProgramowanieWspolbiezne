@@ -1,43 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Data {
+    public class Ball {                                                 //Klasa reprezentujaca kule (jej pozycje oraz kierunek ruchu)
+        private int _x;                                                 //Pozycja kuli w osi x na planszy (wartosc pomiedzy 299 a 750)
+        private int _y;                                                 //Pozycja kuli w osi y na planszy (wartosc pomiedzy 41 a 409)
+        private int _xDirection;                                        //Kierunek, w ktorym porusza sie kula w osi x (wartosc pomiedzy -1 a 1)
+        private int _yDirection;                                        //Kierunek, w ktorym porusza sie kula w osi y (wartosc pomiedzy -1 a 1)
 
-namespace Data {
-    public class Ball {
-        private int _x;
-        private int _y;
-        private int _xDirection;
-        private int _yDirection;
-
-        public Ball() {
-            _x = 0;
-            _y = 0;
-            _xDirection = 0;
-            _yDirection = 0;
-        }
-
-        public Ball (int x, int y, int xDirection, int yDirection) {
+        public Ball (int x, int y, int xDirection, int yDirection) {    //Konsturktor parametrowy, tworzy kule w podanym miejsu poruszajaca sie w podanym kierunku
             _x = x;
             _y = y;
             _xDirection = xDirection;
             _yDirection = yDirection;
         }
 
-        public int x() {
+        public int x() {                                                //Getter pozycji na osi x
             return _x;
         }
-        public int y() {
+        public int y() {                                                //Getter pozycji na osi y
             return _y;
         }
 
-        public int xDirection() {
+        public int xDirection() {                                       //Getter kierunku ruchu w osi x
             return _xDirection;
         }
 
-        public int yDirection() {
+        public int yDirection() {                                       //Getter kierunku ruchu w osi y
             return _yDirection;
+        }
+
+        public void move() {                                            //Metoda przmieszczajaca kule poprzez dodanie do jej pozycji kierunku ruchu
+            _x += _xDirection;                                          //Jezeli kierunek ruchu w osi x to -1, kula porusza sie w lewo, jezeli 0 to nie porusza sie w osji x, a 1 to w prawo
+            _y += _yDirection;                                          //Os y tak samo tylko ruch w osi pionowej
+        }
+
+        public void changeXDirection(int newXDirection) {               //Metoda potrzebna do zmiany ruchu w osi x, jezli kula natrafi na sciane
+            _xDirection = newXDirection;
+        }
+
+        public void changeYDirection(int newYDirection) {               //Metoda potrzebna do zmiany ruchu w osi y, jezeli kula natrafi na sciane
+            _yDirection = newYDirection;
         }
 
     }

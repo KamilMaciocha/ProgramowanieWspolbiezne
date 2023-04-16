@@ -5,21 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Data {
-    public class Surface {
-        private int _width;
-        private int _height;
-
-        public Surface() {
-            _width = 451;
-            _height = 368;
-        }
-
-        public int width() {
-            return _width;
-        }
-
-        public int height() {
-            return _height;
-        }
+    public class Surface {                              //Klasa przechowujaca wymiary planszy oraz pozycje lewego gornego rogu planszy
+        public const int WIDTH = 451;
+        public const int HEIGHT =  368;
+        public const int LEFT_CORNER_X = 299;
+        public const int LEFT_CORNER_Y = 41;
     }
 }

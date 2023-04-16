@@ -1,39 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Data {
-    internal class Repository : DataAPI {
-        private List<Ball> balls;
+    public class Repository : DataAPI {                                     //Repozytorium przechowujace instancje kul oraz zarzadzajace nimi
+        private List<Ball> _balls;                                           //Lista przechowujaca kule
 
-        public Repository() {
-            balls = new List<Ball>();
+        public Repository() {                                               //Konstruktor bezparametrowy, tworzy pusta liste
+            _balls = new List<Ball>();
         }
 
-        public Repository(List<Ball> list) {
-            balls = list;
+        public void add(Ball newBall) {                            //Dodanie kuli do repozytorium
+            _balls.Add(newBall);
         }
 
-        public override void add(Ball newBall) {
-            balls.Add(newBall);
+        public void clear() {                                      //Usuniecie wszystkich instancji kul z repozytorium
+            _balls.Clear();
         }
 
-        public override void clear() {
-            balls.Clear();
+        public Ball get(int index) {                               //Getter zwracajace kule o danym indeksie
+            try {                                                           //Jezeli taka kula nie istnieje, zwraca null
+                return _balls[index];
+            } catch (IndexOutOfRangeException) {
+                return null;
+            }
         }
 
-        public override Ball get(int index) {
-            return balls[index];
+        public void remove(int index) {                            //Usuniecie kuli o podanym indeksie z repozytorium
+            _balls.Remove(get(index));
         }
 
-        public override void remove(int index) {
-            balls.Remove(get(index));
-        }
-
-        public override int size() {
-            return balls.Count;
+        public int size() {                                        //Zwrocenie ilosci kul w repozytorium
+            return _balls.Count;
         }
     }
 }

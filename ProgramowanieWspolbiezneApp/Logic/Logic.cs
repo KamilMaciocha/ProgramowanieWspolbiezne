@@ -8,7 +8,7 @@ namespace Logic {
     public class Logic : LogicAPI {
         private Repository _repository;
         public event EventHandler<BallMovementHandler> _movementDetectionEvent;
-        private List<Thread> threads = new List<Thread>();
+        private List<Thread> _threads = new List<Thread>();
         private int _nextBallIndex = 0;
         private int _previousAmountOfCreatedBalls = 0;
 
@@ -65,14 +65,14 @@ namespace Logic {
         public void start() {
                 //Petla tworzaca "ruchome" obiekty kul i dodajace do EventHandlera informacje
             for (int i = _previousAmountOfCreatedBalls; i < _repository.size(); i++) {
-                BallMovementHandler movement = new BallMovementHandler(_repository.get(i), this, _nextBallIndex++);
+                BallMovementHandler movement = new BallMovementHandler(_repository.get(i), _nextBallIndex++);
                 movement._ballMovementDetection += (_, args) => {
                     onPositionChange(movement);
                 };
                 //Utworzenie zadania dla kuli
                 Thread thread = new Thread(movement.moveBall);
                 thread.Start();
-                threads.Add(thread);
+                _threads.Add(thread);
             }
             //Pole okreslajace identyfikator kazdej z kul
             _previousAmountOfCreatedBalls = _repository.size();
@@ -80,12 +80,16 @@ namespace Logic {
 
         //Metoda konczaca ruch kul
         public void stop() {
-            foreach (Thread thread in threads) {
+            foreach (Thread thread in _threads) {
                 thread.Abort();
             }
-            threads.Clear();
+            _threads.Clear();
             _nextBallIndex = 0;
             _previousAmountOfCreatedBalls = 0;
+        }
+
+        public List<Thread> getThreads() {
+            return _threads;
         }
     }
 }

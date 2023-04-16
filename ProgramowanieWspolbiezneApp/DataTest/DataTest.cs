@@ -27,12 +27,12 @@ namespace DataTest {
             repository.add(ball2);
             Assert.IsTrue(repository.size() == 2);
             Assert.IsNull(repository.get(2));
-            Assert.Equals(ball, repository.get(0));
-            Assert.Equals(ball2, repository.get(1));
+            Assert.That(repository.get(0), Is.EqualTo(ball));
+            Assert.That(repository.get(1), Is.EqualTo(ball2));
             Ball ball3 = new Ball();
             repository.add(ball3);
             Assert.IsTrue(repository.size() == 3);
-            repository.remove(ball3);
+            repository.remove(repository.size() - 1);
             Assert.IsTrue(repository.size() == 2);
             repository.remove(0);
             Assert.IsTrue(repository.size() == 1);

@@ -9,6 +9,10 @@ namespace Data {
             _balls = new List<Ball>();
         }
 
+        public Repository(List<Ball> balls) {
+            _balls = balls;
+        }
+
         public void add(Ball newBall) {                            //Dodanie kuli do repozytorium
             _balls.Add(newBall);
         }
@@ -20,7 +24,7 @@ namespace Data {
         public Ball get(int index) {                               //Getter zwracajace kule o danym indeksie
             try {                                                           //Jezeli taka kula nie istnieje, zwraca null
                 return _balls[index];
-            } catch (IndexOutOfRangeException) {
+            } catch (ArgumentOutOfRangeException) {
                 return null;
             }
         }

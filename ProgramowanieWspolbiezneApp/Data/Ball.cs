@@ -12,6 +12,10 @@
             _yDirection = yDirection;
         }
 
+        public Ball() {
+
+        }
+
         public int x() {                                                //Getter pozycji na osi x
             return _x;
         }

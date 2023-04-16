@@ -8,14 +8,12 @@ namespace Logic {
     //Ruch kuli jako zadanie
     public class BallMovementHandler {
         private Ball _ball;
-        private Logic _logic;
         public event EventHandler<BallMovementHandler> _ballMovementDetection;
         private int _index;
 
         //Konstruktor
-        public BallMovementHandler(Ball ball, Logic logic, int index) {
+        public BallMovementHandler(Ball ball, int index) {
             this._ball = ball;
-            this._logic = logic;
             this._index = index;
         }
 
@@ -55,7 +53,7 @@ namespace Logic {
                     onPositionChange(this);
                     //Opoznienie pomiedzy kazda zamiana pozycji, bez niego ruch bedzie odbywal sie tak szybko
                     //jak procesor bedzie w stanie go obliczyc
-                    Thread.Sleep(1);
+                    Thread.Sleep(10);
                 }
             } catch (Exception) { }
         }

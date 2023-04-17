@@ -12,7 +12,7 @@ namespace Model {
             _logic = new Logic.Logic();
             _amountOfBalls = 0;
             _logic._movementDetectionEvent += (sender, e) => {
-                _ballMovementDetection.Invoke(this, new MovementDetection(e.get().x(), e.get().y(), e.index()));
+                _ballMovementDetection(this, new MovementDetection(e.get().x(), e.get().y(), e.index()));
             };
         }
 
@@ -37,7 +37,7 @@ namespace Model {
             _logic.stop();
             _logic = new Logic.Logic();
             _logic._movementDetectionEvent += (sender, e) => {
-                _ballMovementDetection.Invoke(this, new MovementDetection(e.get().x(), e.get().y(), e.index()));
+                _ballMovementDetection(this, new MovementDetection(e.get().x(), e.get().y(), e.index()));
             };
         }
     }

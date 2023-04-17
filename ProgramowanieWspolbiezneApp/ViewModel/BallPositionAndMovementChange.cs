@@ -9,8 +9,10 @@ namespace ViewModel {
         private int _y;
 
         //Metoda przekazujaca informacje do EventHandlera o zmianie pozycji kuli
-        public void onPropertyChanged([CallerMemberName] string propertyName = null) {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        private void onPropertyChanged([CallerMemberName] string propertyName = null) {
+            if (PropertyChanged != null) {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
         //Wspolrzedna x

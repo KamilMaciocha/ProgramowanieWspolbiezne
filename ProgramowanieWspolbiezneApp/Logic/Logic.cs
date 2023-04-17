@@ -57,7 +57,7 @@ namespace Logic {
 
         //Przekazanie informacji o zmianie pozycji do EventHandlera
         private void onPositionChange(BallMovementHandler movement) {
-            _movementDetectionEvent.Invoke(this, movement);
+            _movementDetectionEvent(this, movement);
         }
 
         //Metoda rozpoczynajaca ruch kazdej z kul, tworzac

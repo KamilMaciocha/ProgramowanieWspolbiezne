@@ -19,7 +19,7 @@ namespace Logic {
 
         //Przekazanie informacji o zmianie pozycji do EventHandlera
         private void onPositionChange(BallMovementHandler movement) {
-            _ballMovementDetection.Invoke(this, movement);
+            _ballMovementDetection(this, movement);
         }
 
         //Getter na obiekt kuli

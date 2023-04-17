@@ -33,7 +33,9 @@ namespace ViewModel {
 
         //Metoda przekazujaca informacje do EventHandlera
         public void onPropertyChanged([CallerMemberName] string propertyName = null) {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (PropertyChanged != null) {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
         //Metody, ktore sa wywolane poprzez wcisnienie przycisku w warstwie View,

@@ -35,7 +35,7 @@ namespace Logic {
             try {
                 while (true) {
                     //Wykrycie kolizji miedzy dwiema kulami
-                    lock (_repository._lockedBall) {
+                    lock (_repository) {
                         for (int i = 0; i < _repository.size(); i++) {
                             Ball ball = _repository.get(i);
                             if (didBallsCollide(_ball, ball)) {

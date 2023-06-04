@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Ball.cs" />
     <Compile Include="DataAPI.cs" />
+    <Compile Include="Logging.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="Surface.cs" />
   </ItemGroup>

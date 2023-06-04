@@ -13,7 +13,7 @@ namespace Logic {
         private int _previousAmountOfCreatedBalls = 0;
 
         //Konstruktor
-        public Logic() {  
+        public Logic() {
             _repository = new Repository();
         }
 

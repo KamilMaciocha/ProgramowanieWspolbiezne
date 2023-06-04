@@ -2,6 +2,7 @@
 using System;
 using System.Threading;
 using System.Collections.Generic;
+using System.Timers;
 
 namespace Logic {
     //Logika calej aplikacji
@@ -11,10 +12,22 @@ namespace Logic {
         private List<Thread> _threads = new List<Thread>();
         private int _nextBallIndex = 0;
         private int _previousAmountOfCreatedBalls = 0;
+        private static System.Timers.Timer timer;
 
         //Konstruktor
         public Logic() {
             _repository = new Repository();
+        }
+
+        private static void setTimer() {
+            timer = new System.Timers.Timer(500);
+            timer.Elapsed += onTimedEvent;
+            timer.AutoReset = true;
+            timer.Enabled = true;
+        }
+
+        private static void onTimedEvent(Object source, ElapsedEventArgs e) {
+            Logging.saveData();
         }
 
         //Metoda tworzaca podana ilosc instancji kul
@@ -93,6 +106,7 @@ namespace Logic {
             }
             //Pole okreslajace identyfikator kazdej z kul
             _previousAmountOfCreatedBalls = _repository.size();
+            setTimer();
         }
 
         //Metoda konczaca ruch kul
@@ -103,6 +117,7 @@ namespace Logic {
             _threads.Clear();
             _nextBallIndex = 0;
             _previousAmountOfCreatedBalls = 0;
+            timer.Stop();
         }
 
         public List<Thread> getThreads() {
